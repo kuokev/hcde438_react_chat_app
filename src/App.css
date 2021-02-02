@@ -7,6 +7,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .header{
@@ -29,4 +30,75 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.text-input {
+  background:rgba(49, 48, 48, 0.568);
+  border-top:1px solid white;
+  height: 2.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-box{
+  height: 1.5rem;
+  width: calc(100% - 1.5rem);
+  background:rgba(255, 255, 255, 0.466);
+  border-radius: 0.8rem;
+  outline: none;
+  border: 1px solid white;
+  color: rgb(255, 255, 255);
+  padding-left: 0.5rem;
+}
+
+.send-button{
+  position: absolute;
+  right: 0.30rem;
+  top: 0.389rem;
+  border-radius: 100%;
+  border: 1px solid rgb(255, 255, 255);
+  background: rgb(32, 33, 58);
+  color:  rgb(196, 215, 250);
+  cursor: pointer;
+  outline: none;
+  height: 1.72rem;
+  width: 1.72rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* if prop is equal to disabled, then apply these css rules */
+.send-button[disabled]{
+  background: grey;
+  cursor: default;
+}
+
+/* if send button is disabled, change the SVG icon color to specified color */
+/* triangle (>) means only direct children */
+.send-button[disabled] > svg {
+  color:rgba(255, 255, 255, 0.527)
+}
+
+.messages {
+  display: flex;
+  flex-direction: column-reverse;
+  flex: 1; /* grow this element to be exactly whatever space is left */
+  overflow: auto; /* on Windows, adds scrollbar when scrolling and 
+  disappear when not (mac does this automatically) */
+}
+
+.message-row{
+  width: 100%;
+}
+
+.message{
+  background: black;
+  color: white;
+  border-radius: 10px;
+  margin: 4px;
+  display: inline-block;
+  padding: 4px 12px;
 }
