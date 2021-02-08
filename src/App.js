@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './App.css';
 import TextInput from './TextInput';
 import Message from './Message';
+import NamePicker from './NamePicker';
+import {db, useDB} from './db';
 
 
 function App() {
@@ -11,19 +13,27 @@ function App() {
   variable (setMessages) */}
   {/* Default starting value for useState goes inside parentheses; in this case,
   start with an empty array (square brackets) for map to populate later */}
-  const [messages, setMessages] = useState([])
+  const messages = useDB(); //Function beginning with "use" is a HOOK
+  const [username, setUsername] = useState(localStorage.getItem('username') || '')
+
+  console.log(messages)
+
   return <div className="App">
 
       <header className="header">
-        <div className="logo"></div>
-          Pinguini
+          <div className="logo">
+            <h2 className="logo-name">Pinguini</h2>
+          </div>
+
+          
+          <NamePicker saveName={setUsername} />
       </header>
 
     <main className="messages">
-      
-      {messages.map((m, i)=> {
-        console.log("MESSAGE #" + i, m)
-        return <Message key={i} {...m} />
+      {messages.map((msg, i)=> {
+        const isMe = msg.name===username;
+        console.log("MESSAGE #" + i, msg)
+        return <Message key={i} {...msg} isMe={isMe}/>
       })
 
       }
@@ -36,7 +46,7 @@ function App() {
     all the existing messages (...messages). We use this order because of
     flex direction's column-reverse in App.css*/}
     <TextInput 
-      send={(t)=> setMessages([{text:t}, ...messages])}
+      send={(t)=> db.send({text:t, name:username, date:new Date()})}
     />
 
   </div>

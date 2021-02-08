@@ -1,8 +1,8 @@
 .App {
   text-align: center;
   background: #3494E6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to top, #EC6EAD, #3494E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -20,9 +20,16 @@
   font-size:1.2rem;
   color:white;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
 }
 
-.logo{
+.logo-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
   background: url(https://coverager.com/wp-content/uploads/2019/07/wysa.png);
   height:1.8rem;
   width:1.8rem;
@@ -30,6 +37,15 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
+.logo-name {
+  position: relative;
+  left: 2.15rem;
+  font-size: 1.7rem;
+  bottom: 0.05rem;
 }
 
 .text-input {
@@ -92,13 +108,35 @@
 
 .message-row{
   width: 100%;
+  display: flex;
 }
 
 .message{
   background: black;
   color: white;
   border-radius: 10px;
-  margin: 4px;
+  margin: 10px;
   display: inline-block;
   padding: 4px 12px;
+  position: relative;
+}
+
+/* Note: absolute position refers to next above parent that has "relative" 
+position. Otherwise, defaults to top of screen. */
+.message-name {
+  position: absolute;
+  top: -12px;
+  left: 9px;
+  font-size: 0.5rem;
+  color: black;
+}
+
+.name-picker {
+  display: flex;
+  align-items: right;
+  margin-left: 3rem;
+}
+
+.name-hello{
+  margin-right: 1rem;
 }
